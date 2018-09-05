@@ -2,18 +2,19 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Assalamualaikum </div>
-                <div class="card-body">
+    <div class="row justify">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="panel panel-default">
+                <div class="panel-heading">Assalamualaikum </div>
+
+                <div class="panel-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
+                        <div class="alert alert-success">
                             {{ session('status') }}
                         </div>
                     @endif
 
-                    Selamat Datang {{ Auth::user()->name }}
+                    Selamat datang di website ini!
                 </div>
             </div>
         </div>

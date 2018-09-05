@@ -12,9 +12,21 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('fronend.index');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=>'superadmin', 'middleware'=>['auth','role:member|admin|superadmin']],
+function(){
+	Route::resource('jurusan','JurusanController');
+Route::resource('kelas','KelasController');
+Route::resource('siswa','SiswaController');
+Route::resource('pertanyaan','PertanyaanController');
+Route::resource('jawab','JawabController');
+Route::resource('data_pegawai','DataPegawaiController');
+Route::resource('datamember','DataMemberController');
+});
+

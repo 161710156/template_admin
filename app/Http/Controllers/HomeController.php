@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Laratrust\LaratrustFacade as Laratrust;
 
 class HomeController extends Controller
 {
@@ -23,6 +24,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (Laratrust::hasRole('admin')) return $this->adminDashboard();
+        if (Laratrust::hasRole('member')) return $this->memberDashboard();
+        if (Laratrust::hasRole('superadmin')) return $this->superadminDashboard();
+    }
+    protected function adminDashboard(){
+        return view('admin.index');
+    }
+    protected function memberDashboard(){
+        return view('member.index');
+    }
+    protected function superadminDashboard(){
+        return view('fronend.super_admin.index');
     }
 }
